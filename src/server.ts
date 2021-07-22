@@ -8,6 +8,6 @@ app.get("/",function(req,res){
     );
 });
 app.listen(8080,function(){
-    console.log("servidor funcionando na pota 8080");
+    console.log("servidor funcionando na porta 8080");
 });
 
