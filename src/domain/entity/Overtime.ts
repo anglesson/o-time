@@ -13,18 +13,17 @@ class Overtime {
 		start_time: Date,
 		end_time: Date,
 		description: string,
-		shipping_status: boolean,
     user: User
 	) {
     this.date = date;
     this.start_time = start_time;
     this.end_time = end_time;
     this.description = description;
-    this.shipping_status = shipping_status;
+    this.shipping_status = false;
     this.user = user;
   }
 
-  
+
 
 }
 

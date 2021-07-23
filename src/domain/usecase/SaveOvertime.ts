@@ -14,7 +14,6 @@ class SaveOvertime {
 		start_time: Date,
 		end_time: Date,
 		description: string,
-		shipping_status: boolean,
 		user: User
 	) {
 		const overtime = new Overtime(
@@ -22,7 +21,6 @@ class SaveOvertime {
 			start_time,
 			end_time,
 			description,
-			shipping_status,
 			user
 		);
     this.overtimeRepository.saveOvertime(overtime);
