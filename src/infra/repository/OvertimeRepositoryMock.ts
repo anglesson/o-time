@@ -1,5 +1,5 @@
-import { Overtime } from "../entity/Overtime";
-import { OvertimeRepository } from "../repository/OvertimeRepository";
+import { Overtime } from "../../domain/entity/Overtime";
+import { OvertimeRepository } from "../../domain/repository/OvertimeRepository";
 
 class OvertimeRepositoryMock implements OvertimeRepository {
 

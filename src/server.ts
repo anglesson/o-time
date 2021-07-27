@@ -7,7 +7,7 @@ app.get("/",function(req,res){
         }
     );
 });
-app.listen(8080,function(){
-    console.log("servidor funcionando na porta 8080");
+app.listen(3003,function(){
+    console.log("servidor funcionando na porta 3003");
 });
 

@@ -1,4 +1,4 @@
-import { OvertimeRepositoryMock } from "../src/domain/repository/OvertimeRepositoryMock";
+import { OvertimeRepositoryMock } from "../src/infra/repository/OvertimeRepositoryMock";
 import { SaveOvertime } from "../src/domain/usecase/SaveOvertime";
 import { User } from "../src/domain/entity/User";
 
