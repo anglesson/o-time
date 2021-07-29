@@ -7,9 +7,7 @@ import { MailtrapMailProvider } from "../src/infra/providers/MailtrapMailProvide
 
 test('Save Overtime', async function() {
   const overtimeRepositoryMock = new OvertimeRepositoryMock();
-  const mailProvider = new MailtrapMailProvider();
   const saveOvertime = new SaveOvertime(overtimeRepositoryMock);
-  const send = new SendReportsOvertime(overtimeRepositoryMock, mailProvider);
 
   let date = new Date();
   let start_time = new Date();
@@ -17,14 +15,6 @@ test('Save Overtime', async function() {
   let description = "Atualização de Base...";
   let user = new User("Adinho", "adson.souza@aric.com.br");
   let user2 = new User("Anglesson", "anglesson.araujo@aric.com.br");
-  //saveOvertime.execute(date, start_time, end_time, description, user);
+  saveOvertime.execute(date, start_time, end_time, description, user);
   saveOvertime.execute(date, start_time, end_time, description, user2);
-  try {
-    const getOvertimesByUser = new GetOvertimesByUser(overtimeRepositoryMock);
-    const res = await getOvertimesByUser.execute(user2);
-    await send.execute(user2);
-    console.log(res);
-  } catch(e) {
-    console.log(e);
-  }
 });
