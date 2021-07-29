@@ -16,7 +16,6 @@ test("Getting overtimes by user", async function() {
         start_time.setTime(22);
         let end_time = new Date();
         end_time.setTime(23);
-        end_time.setMinutes(30);
         let description = "Atualização de Base 1234...";
         let user2 = new User("Anglesson", "anglesson.araujo@aric.com.br");
         saveOvertime.execute(date, start_time, end_time, description, user2);
