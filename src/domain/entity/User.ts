@@ -1,5 +1,3 @@
-import { Overtime } from "./Overtime";
-
 class User {
 	public readonly name: string;
 	public readonly email: string;

@@ -1,4 +1,5 @@
 import { Overtime } from "../../domain/entity/Overtime";
+import { User } from "../../domain/entity/User";
 import { OvertimeRepository } from "../../domain/repository/OvertimeRepository";
 
 class OvertimeRepositoryMock implements OvertimeRepository {
@@ -13,8 +14,8 @@ class OvertimeRepositoryMock implements OvertimeRepository {
     this.overtimes.push(overtime);
   }
 
-  getAllOvertimes() {
-    return this.overtimes;
+  getAllOvertimes(user: User) {
+    return this.overtimes.filter((overtime) => { return overtime.user == user });
   }
 }
 

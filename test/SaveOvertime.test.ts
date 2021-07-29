@@ -11,9 +11,11 @@ test('Save Overtime', async function() {
   let end_time = new Date();
   let description = "Atualização de Base...";
   let user = new User("Adinho", "adson.souza@aric.com.br");
+  let user2 = new User("Anglesson", "anglesson.araujo@aric.com.br");
   saveOvertime.execute(date, start_time, end_time, description, user);
+  saveOvertime.execute(date, start_time, end_time, description, user2);
 
-  const overtimesRecuoerados = overtimeRepositoryMock.getAllOvertimes();
+  const overtimesRecuperados = overtimeRepositoryMock.getAllOvertimes(user2);
 
-  console.log(overtimesRecuoerados);
+  console.log(overtimesRecuperados);
 });
