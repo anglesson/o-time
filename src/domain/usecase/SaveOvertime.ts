@@ -1,11 +1,11 @@
-import { OvertimeRepository } from "../repository/OvertimeRepository";
+import { IOvertimeRepository } from "../repository/IOvertimeRepository";
 import { User } from "../entity/User";
 import { Overtime } from "../entity/Overtime";
 
 class SaveOvertime {
-	overtimeRepository: OvertimeRepository;
+	overtimeRepository: IOvertimeRepository;
 
-	constructor(overtimeRepository: OvertimeRepository) {
+	constructor(overtimeRepository: IOvertimeRepository) {
 		this.overtimeRepository = overtimeRepository;
 	}
 

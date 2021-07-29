@@ -1,8 +1,8 @@
 import { Overtime } from "../../domain/entity/Overtime";
 import { User } from "../../domain/entity/User";
-import { OvertimeRepository } from "../../domain/repository/OvertimeRepository";
+import { IOvertimeRepository } from "../../domain/repository/IOvertimeRepository";
 
-class OvertimeRepositoryMock implements OvertimeRepository {
+class OvertimeRepositoryMock implements IOvertimeRepository {
 
   private overtimes: Array<Overtime>;
 
@@ -14,8 +14,19 @@ class OvertimeRepositoryMock implements OvertimeRepository {
     this.overtimes.push(overtime);
   }
 
-  getAllOvertimes(user: User) {
-    return this.overtimes.filter((overtime) => { return overtime.user == user });
+  getOvertimesByUser(user: User) {
+    if( this.overtimes.length == 0 ){
+      throw new Error("Não há horas cadastradas.")
+    }
+    return this.overtimes.filter((overtime) => { return overtime.user.email == user.email });
+  }
+
+  getAllOvertimes() {
+    return this.overtimes;
+  }
+
+  sendReportsOvertimes() {
+    return Promise.resolve();
   }
 }
 
