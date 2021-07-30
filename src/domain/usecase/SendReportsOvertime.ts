@@ -15,7 +15,7 @@ class SendReportsOvertime {
         const overtimes = this.overtimeRepository.getOvertimesByUser(user);
 
         const overtimesNotSend = overtimes.filter((overtime) => {
-            return overtime.shipping_status == false;
+            return overtime.getShippingStatus() == false;
         });
 
         if (overtimesNotSend.length == 0)
@@ -104,9 +104,9 @@ class SendReportsOvertime {
                 overtimesNotSend.map((element) => {
                     return `
                         <tr>
-                            <td>${element.date.getDay()}/${element.date.getMonth()+1}/${element.date.getFullYear()}</td>
-                            <td>${element.description}</td> 
-                            <td>${new Date().setTime(element.end_time.getTime() - element.start_time.getTime())}</td>
+                            <td>${element.getDate().getDay()}/${element.getDate().getMonth()+1}/${element.getDate().getFullYear()}</td>
+                            <td>${element.getDescription()}</td> 
+                            <td>${new Date().setTime(element.getEndTime().getTime() - element.getStartTime().getTime())}</td>
                         </tr>`;
                 }) +
                 `
