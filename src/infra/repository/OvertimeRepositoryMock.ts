@@ -18,7 +18,7 @@ class OvertimeRepositoryMock implements IOvertimeRepository {
     if( this.overtimes.length == 0 ){
       throw new Error("Não há horas cadastradas.")
     }
-    return this.overtimes.filter((overtime) => { return overtime.user.email == user.email });
+    return this.overtimes.filter((overtime) => { return overtime.getUser().email == user.email });
   }
 
   getAllOvertimes() {
@@ -33,7 +33,7 @@ class OvertimeRepositoryMock implements IOvertimeRepository {
     overtimes.forEach((overtime) => {
       this.overtimes.map((overDB) => {
         if(overtime == overDB) {
-          overDB.shipping_status = true;
+          overDB.setShippingStatus(true);
         }
       })
     });
