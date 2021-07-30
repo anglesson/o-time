@@ -28,6 +28,16 @@ class OvertimeRepositoryMock implements IOvertimeRepository {
   sendReportsOvertimes() {
     return Promise.resolve();
   }
+
+  changeShippingStatus(overtimes: Array<Overtime>) {
+    overtimes.forEach((overtime) => {
+      this.overtimes.map((overDB) => {
+        if(overtime == overDB) {
+          overDB.shipping_status = true;
+        }
+      })
+    });
+  }
 }
 
 export { OvertimeRepositoryMock }

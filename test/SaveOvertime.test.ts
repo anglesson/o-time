@@ -1,9 +1,6 @@
 import { OvertimeRepositoryMock } from "../src/infra/repository/OvertimeRepositoryMock";
 import { SaveOvertime } from "../src/domain/usecase/SaveOvertime";
-import { GetOvertimesByUser } from '../src/domain/usecase/GetOvertimesByUser';
 import { User } from "../src/domain/entity/User";
-import { SendReportsOvertime } from "../src/domain/usecase/SendReportsOvertime";
-import { MailtrapMailProvider } from "../src/infra/providers/MailtrapMailProvider";
 
 test('Save Overtime', async function() {
   const overtimeRepositoryMock = new OvertimeRepositoryMock();

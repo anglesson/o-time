@@ -5,7 +5,7 @@ class Overtime {
 	public readonly start_time: Date;
 	public readonly end_time: Date;
 	public readonly description: string;
-	public readonly shipping_status: boolean;
+	public shipping_status: boolean;
 	public readonly user: User;
 
 	constructor(
@@ -22,8 +22,6 @@ class Overtime {
 		this.shipping_status = false;
 		this.user = user;
 	}
-
-
 
 }
 

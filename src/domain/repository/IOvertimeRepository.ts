@@ -6,6 +6,7 @@ interface IOvertimeRepository {
   getAllOvertimes(): Array<Overtime>;
   getOvertimesByUser(user: User): Array<Overtime>;
   sendReportsOvertimes(): Promise<void>;
+  changeShippingStatus(overtime: Array<Overtime>): void;
 }
 
 export { IOvertimeRepository }

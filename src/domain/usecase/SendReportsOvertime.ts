@@ -13,6 +13,7 @@ class SendReportsOvertime {
 
     async execute(user: User) {
         const overtimes = this.overtimeRepository.getOvertimesByUser(user);
+
         const overtimesNotSend = overtimes.filter((overtime) => {
             return overtime.shipping_status == false;
         });
@@ -115,6 +116,7 @@ class SendReportsOvertime {
         });
 
         // Implementar a mudança de status da Overtime após o envio.
+        this.overtimeRepository.changeShippingStatus(overtimesNotSend);
     }
 
 }
