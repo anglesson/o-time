@@ -19,4 +19,21 @@ describe('SaveOvertime Controller', () => {
 
     expect(httpResponse.statusCode).toBe(400)
   })
+
+  test('Return 400 if date is not provided', async () => {
+    const httpRequest = {
+      body: {
+        description: 'description',
+        start_time: '21:00', 
+        end_time: '23:00'
+      }
+    }
+    const db = new OvertimeRepositoryMock();
+    const saveOvertimeCase = new SaveOvertime(db);
+    const sut = new SaveOvertimeController(saveOvertimeCase)
+
+    const httpResponse = await sut.handle(httpRequest);
+
+    expect(httpResponse.statusCode).toBe(400)
+  })
 })
