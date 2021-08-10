@@ -1,5 +1,5 @@
 import { User } from "../entity/User";
-import { IMailProvider } from "../providers/IMailProvider";
+import { IMailProvider } from "../../presentation/providers/IMailProvider";
 import { IOvertimeRepository } from "../repository/IOvertimeRepository"
 
 class SendReportsOvertime {

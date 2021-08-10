@@ -1,4 +1,4 @@
-import { IMailProvider, IMessage } from "../../domain/providers/IMailProvider";
+import { IMailProvider, IMessage } from "../../presentation/providers/IMailProvider";
 import nodemailer from 'nodemailer';
 import Mail from "nodemailer/lib/mailer";
 import dotenv from 'dotenv'
