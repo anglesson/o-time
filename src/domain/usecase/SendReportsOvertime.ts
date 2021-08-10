@@ -21,7 +21,7 @@ class SendReportsOvertime {
         if (overtimesNotSend.length == 0)
             throw new Error("Não há horas extras pendentes de envio.");
 
-        this.mailProvider.sendMail({
+        await this.mailProvider.sendMail({
             to: {
                 name: "Anglesson",
                 email: "aanglesson@gmail.com"
@@ -104,7 +104,7 @@ class SendReportsOvertime {
                 overtimesNotSend.map((element) => {
                     return `
                         <tr>
-                            <td>${element.getDate().getDay()}/${element.getDate().getMonth()+1}/${element.getDate().getFullYear()}</td>
+                            <td>${element.getDate().getDate()}/${element.getDate().getMonth()+1}/${element.getDate().getFullYear()}</td>
                             <td>${element.getDescription()}</td> 
                             <td>${new Date().setTime(element.getEndTime().getTime() - element.getStartTime().getTime())}</td>
                         </tr>`;

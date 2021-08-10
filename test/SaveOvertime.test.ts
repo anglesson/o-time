@@ -1,5 +1,5 @@
 import { OvertimeRepositoryMock } from "../src/infra/repository/OvertimeRepositoryMock";
-import { SaveOvertime } from "../src/domain/usecase/SaveOvertime";
+import { SaveOvertime } from "../src/domain/usecase/SaveOvertime/SaveOvertime";
 import { User } from "../src/domain/entity/User";
 
 test('Save Overtime', async function() {

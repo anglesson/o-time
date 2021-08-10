@@ -57,13 +57,13 @@ class Overtime {
 
 	getShippingStatus() {
 		return this.shipping_status;
-	}	
-	
+	}
+
 	setShippingStatus(status: boolean) {
 		this.shipping_status = status;
 	}
 
-	getUser(){
+	getUser() {
 		return this.user;
 	}
 

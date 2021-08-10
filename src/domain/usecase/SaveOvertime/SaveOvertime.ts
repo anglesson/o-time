@@ -1,6 +1,6 @@
-import { IOvertimeRepository } from "../repository/IOvertimeRepository";
-import { User } from "../entity/User";
-import { Overtime } from "../entity/Overtime";
+import { IOvertimeRepository } from "../../repository/IOvertimeRepository";
+import { User } from "../../entity/User";
+import { Overtime } from "../../entity/Overtime";
 
 class SaveOvertime {
 	overtimeRepository: IOvertimeRepository;
