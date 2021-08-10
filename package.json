@@ -5,7 +5,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "dev": "nodemon ./src/server.ts",
-    "test": "tsc && jest ./dist"
+    "test": "tsc && jest ./dist  --silent"
   },
   "repository": {
     "type": "git",
