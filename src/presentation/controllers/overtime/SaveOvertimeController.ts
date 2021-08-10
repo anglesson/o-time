@@ -18,10 +18,14 @@ export class SaveOvertimeController implements IController {
     try {
       // Add middleware to get user's request
       const user = {name: "Anglesson", email: "anglesson.araujo@aric.com.br"}
+      const requiredFields = ['date', 'start_time', 'end_time', 'description']
+      
       const { date, start_time, end_time, description } = httpRequest.body;
 
-      if(!description) {
-        return badRequest(new MissingParamError('description'))
+      for (const field of requiredFields) {
+        if(!httpRequest.body[field]) {
+          return badRequest(new MissingParamError(field))
+        }
       }
 
       this.saveOvertime.execute(date, start_time, end_time, description, user);
