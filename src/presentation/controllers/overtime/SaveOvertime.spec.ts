@@ -70,4 +70,22 @@ describe('SaveOvertime Controller', () => {
 
     expect(httpResponse.statusCode).toBe(400)
   })
+
+  test('Return 400 if email is not provided', async () => {
+    const httpRequest = {
+      body: {
+        description: 'description',
+        start_time: '22:00',
+        end_time: '23:00',
+        date: '21/03/2022'
+      }
+    }
+    const db = new OvertimeRepositoryMock();
+    const saveOvertimeCase = new SaveOvertime(db);
+    const sut = new SaveOvertimeController(saveOvertimeCase)
+
+    const httpResponse = await sut.handle(httpRequest);
+
+    expect(httpResponse.statusCode).toBe(400)
+  })
 })
