@@ -18,7 +18,7 @@ export class SaveOvertimeController implements IController {
     try {
       // Add middleware to get user's request
       const user = {name: "Anglesson", email: "anglesson.araujo@aric.com.br"}
-      const requiredFields = ['date', 'start_time', 'end_time', 'description']
+      const requiredFields = ['date', 'start_time', 'end_time', 'description', 'user']
       
       const { date, start_time, end_time, description } = httpRequest.body;
 
