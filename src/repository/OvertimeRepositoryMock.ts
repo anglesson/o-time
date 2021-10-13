@@ -1,5 +1,5 @@
-import { Overtime } from "../models/Overtime";
-import { User } from "../models/User";
+import { Overtime } from "../entities/Overtime";
+import { User } from "../entities/User";
 import { IOvertimeRepository } from "./IOvertimeRepository";
 
 export class OvertimeRepositoryMock implements IOvertimeRepository {
@@ -10,9 +10,11 @@ export class OvertimeRepositoryMock implements IOvertimeRepository {
     this.overtimes = [];
   }
 
-  save(overtime: Overtime) {
+  save(overtime: Overtime): Promise<Overtime> {
     this.overtimes.push(overtime);
-    return overtime;
+    return new Promise(function () {
+        return overtime;
+      });
   }
 
   getOvertimesByUser(user: User) {

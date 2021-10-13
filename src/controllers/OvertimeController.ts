@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Overtime } from "../models/Overtime";
-import { User } from "../models/User";
+import { Overtime } from "../entities/Overtime";
+import { User } from "../entities/User";
 import { IOvertimeRepository } from "../repository/IOvertimeRepository";
 
 export class OvertimeController {
@@ -16,7 +16,7 @@ export class OvertimeController {
             let user = new User("Anglesson", "anglesson@email.com.br");
             const {date, start_time, end_time, description} = req.body;
             const overtime = new Overtime(date, start_time, end_time, description, user);
-            const overtimeSaved = this.overtimeRepository.save(overtime);
+            const overtimeSaved = await this.overtimeRepository.save(overtime);
 
             res.json({ data: overtimeSaved});
         } catch(e) {

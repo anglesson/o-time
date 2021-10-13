@@ -1,9 +1,9 @@
 import express from "express";
 import { OvertimeController } from "./controllers/OvertimeController";
-import { OvertimeRepositoryMock } from "./repository/OvertimeRepositoryMock";
+import { OvertimeRepositoryFirebaseImp } from "./repository/OvertimeRepositoryFirebaseImp";
 
-const overtimeRepositoryMock = new OvertimeRepositoryMock();
-const overtimeController = new OvertimeController(overtimeRepositoryMock);
+const overtimeRepositoryFirebaseImp = new OvertimeRepositoryFirebaseImp();
+const overtimeController = new OvertimeController(overtimeRepositoryFirebaseImp);
 
 const app = express();
 app.use(express.json());

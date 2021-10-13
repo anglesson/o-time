@@ -1,8 +1,8 @@
-import { Overtime } from "../models/Overtime";
-import { User } from "../models/User";
+import { Overtime } from "../entities/Overtime";
+import { User } from "../entities/User";
 
 export interface IOvertimeRepository {
-    save(overtime: Overtime): Overtime;
-    getOvertimesByUser(user: User): Array<Overtime>;
-    getAllOvertimes(): Array<Overtime>;
+    save(overtime: Overtime): Promise<Overtime>;
+    //getOvertimesByUser(user: User): Array<Overtime>;
+    //getAllOvertimes(): Array<Overtime>;
 }
