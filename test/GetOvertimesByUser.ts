@@ -1,10 +1,10 @@
-import { User } from "../src/domain/entity/User";
+import { User } from "../src/models/User";
 import { GetOvertimesByUser } from "../src/domain/usecase/GetOvertimesByUser/GetOvertimesByUser";
 import { GetOvertimesByUserDTO } from "../src/domain/usecase/GetOvertimesByUser/GetOvertimesByUserDTO";
 import { SaveOvertime } from "../src/domain/usecase/SaveOvertime/SaveOvertime";
 import { SendReportsOvertime } from "../src/domain/usecase/SendReportsOvertime";
-import { MailtrapMailProvider } from "../src/infra/providers/MailtrapMailProvider";
-import { OvertimeRepositoryMock } from "../src/infra/repository/OvertimeRepositoryMock";
+import { MailtrapMailProvider } from "../src/providers/MailtrapMailProvider";
+import { OvertimeRepositoryMock } from "../src/repository/OvertimeRepositoryMock";
 
 test("Getting overtimes by user", async function() {
     try {

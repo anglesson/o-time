@@ -1,17 +1,18 @@
-import { Overtime } from "../../domain/entity/Overtime";
-import { User } from "../../domain/entity/User";
-import { IOvertimeRepository } from "../../domain/repository/IOvertimeRepository";
+import { Overtime } from "../models/Overtime";
+import { User } from "../models/User";
+import { IOvertimeRepository } from "./IOvertimeRepository";
 
-class OvertimeRepositoryMock implements IOvertimeRepository {
+export class OvertimeRepositoryMock implements IOvertimeRepository {
 
   private overtimes: Array<Overtime>;
 
-  constructor(){
+  constructor() {
     this.overtimes = [];
   }
 
-  saveOvertime(overtime: Overtime) {
+  save(overtime: Overtime) {
     this.overtimes.push(overtime);
+    return overtime;
   }
 
   getOvertimesByUser(user: User) {
@@ -39,5 +40,3 @@ class OvertimeRepositoryMock implements IOvertimeRepository {
     });
   }
 }
-
-export { OvertimeRepositoryMock }

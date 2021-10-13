@@ -1,6 +1,6 @@
-import { OvertimeRepositoryMock } from "../src/infra/repository/OvertimeRepositoryMock";
+import { OvertimeRepositoryMock } from "../src/repository/OvertimeRepositoryMock";
 import { SaveOvertime } from "../src/domain/usecase/SaveOvertime/SaveOvertime";
-import { User } from "../src/domain/entity/User";
+import { User } from "../src/models/User";
 
 test('Save Overtime', async function() {
   const overtimeRepositoryMock = new OvertimeRepositoryMock();
