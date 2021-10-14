@@ -13,8 +13,16 @@ export class OvertimeController {
 
     async create(req: Request, res: Response) {
         try {
-            let user = new User("Anglesson", "anglesson@email.com.br");
-            const {date, start_time, end_time, description} = req.body;
+            const requiredFields = ['date', 'start_time', 'end_time', 'description', 'user'];
+            
+            for (const field of requiredFields) {
+                if(!req.body[field]) {
+                    throw new Error(`O parametro ${field} é obrigatório.`)
+                }
+            }
+
+            const {date, start_time, end_time, description, user} = req.body;
+
             const overtime = new Overtime(date, start_time, end_time, description, user);
             const overtimeSaved = await this.overtimeRepository.save(overtime);
 

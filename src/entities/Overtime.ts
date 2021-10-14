@@ -1,6 +1,8 @@
 import { User } from "./User";
+import { v4 as uuidv4 } from 'uuid'
 
 class Overtime {
+	private id: string;
 	private date: Date;
 	private start_time: Date;
 	private end_time: Date;
@@ -15,12 +17,17 @@ class Overtime {
 		description: string,
 		user: User
 	) {
+		this.id = uuidv4(); 
 		this.date = date;
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.description = description;
 		this.shipping_status = false;
 		this.user = user;
+	}
+
+	getId() {
+		return this.id;
 	}
 
 	getDate() {

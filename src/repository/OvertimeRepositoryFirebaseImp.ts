@@ -1,6 +1,6 @@
 import { Overtime } from "../entities/Overtime";
 import { IOvertimeRepository } from "./IOvertimeRepository";
-import { firestore }  from "../db/firebase";
+import { db, set, ref }  from "../db/firebase";
 
 export class OvertimeRepositoryFirebaseImp implements IOvertimeRepository{
     async save(overtime: Overtime): Promise<Overtime> {
@@ -9,17 +9,17 @@ export class OvertimeRepositoryFirebaseImp implements IOvertimeRepository{
             date: overtime.getDate(),
             description: overtime.getDescription(),
             end_time: overtime.getEndTime(),
-            start_time: overtime.getStartTime()
+            start_time: overtime.getStartTime(),
+            user: {
+                name: overtime.getUser().name,
+                email: overtime.getUser().email
+            }
         }
 
-        const userData = {
-            name: overtime.getUser().name,
-            email: overtime.getUser().email
-        }
+        const retorno = await set(ref(db, 'overtimes/' + overtime.getId()), overtimeData);
 
-        await firestore.collection('overtimes').doc('teste').set(overtimeData)
-        await firestore.collection('users').doc('teste').set(userData)
-        
+        console.log(retorno);
+    
         return overtime;
     }
 }

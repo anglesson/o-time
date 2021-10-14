@@ -1,4 +1,5 @@
-import admin from "firebase-admin";
+import { initializeApp } from "firebase/app";
+import { getDatabase, set, ref } from 'firebase/database'
 
 const firebaseConfig = {
   apiKey: "AIzaSyCoAfDvR1rxxP6_XUHxgCxoxODVhxsIR6M",
@@ -10,8 +11,7 @@ const firebaseConfig = {
   measurementId: "G-GPKB30FE2C"
 };
 
-admin.initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
+const db = getDatabase(app);
 
-const firestore = admin.firestore();
-
-export { firestore };
+export { db, set, ref };
