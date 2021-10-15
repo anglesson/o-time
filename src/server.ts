@@ -1,15 +1,20 @@
 import express from "express";
-import { OvertimeController } from "./controllers/OvertimeController";
-import { OvertimeRepositoryFirebaseImp } from "./repositories/OvertimeRepositoryFirebaseImp";
+import './database';
 
-const overtimeRepositoryFirebaseImp = new OvertimeRepositoryFirebaseImp();
-const overtimeController = new OvertimeController(overtimeRepositoryFirebaseImp);
+import { OvertimeController } from "./controllers/OvertimeController";
+import { UserController } from "./controllers/UserController";
+
+const overtimeController = new OvertimeController();
+const userController = new UserController();
 
 const app = express();
 app.use(express.json());
 
 app.post('/api/overtime', overtimeController.create);
+app.post('/api/user', userController.create);
 
-app.listen(3003,function(){
-    console.log("servidor funcionando na porta 3003");
+const port = 3003;
+
+app.listen(port,function(){
+    console.log(`Server working on port:${port}`);
 });

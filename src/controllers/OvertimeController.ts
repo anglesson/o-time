@@ -1,42 +1,41 @@
 import { Request, Response } from "express";
 import { Overtime } from "../entities/Overtime";
-import { User } from "../entities/User";
-import { IOvertimeRepository } from "../repositories/IOvertimeRepository";
+import { OvertimeValidation } from "../entities/validations/OvertimeValidation";
+import { OvertimesService } from "../services/OvertimesService";
+import { UsersService } from "../services/UsersService";
 
 export class OvertimeController {
-    public overtimeRepository: IOvertimeRepository;
 
-    constructor(overtimeRepository: IOvertimeRepository) {
-        this.overtimeRepository = overtimeRepository;
-        this.create = this.create.bind(this);
-    }
-
-    async create(req: Request, res: Response) {
+    async create(httpRequest: Request, httpResponse: Response) {
         try {
-            const requiredFields = ['date', 'start_time', 'end_time', 'description', 'user'];
-            
-            for (const field of requiredFields) {
-                if(!req.body[field]) {
-                    throw new Error(`O parametro ${field} é obrigatório.`)
-                }
+            const overtimesService = new OvertimesService();
+            const usersService = new UsersService();
+
+            const overtimeValidation = new OvertimeValidation(httpRequest.body);
+            overtimeValidation.validate();
+
+            const { date, start_time, end_time, description, user_email } = httpRequest.body;
+
+            // Buscar os dados do usuário
+            const user = await usersService.findByEmail(user_email);
+
+            if(!user) {
+                throw new Error("Cadê");
             }
 
-            const requiredFieldsUser = ['name', 'email'];
-            
-            for (const field of requiredFieldsUser) {
-                if(!req.body['user'][field]) {
-                    throw new Error(`O parametro ${field} do user é obrigatório.`)
-                }
-            }
+            const overtime = new Overtime();
+            overtime.date = date;
+            overtime.start_time = start_time;
+            overtime.end_time = end_time;
+            overtime.description = description;
+            overtime.user = user_email;
 
-            const {date, start_time, end_time, description, user} = req.body;
 
-            const overtime = new Overtime(date, start_time, end_time, description, user);
-            const overtimeSaved = await this.overtimeRepository.save(overtime);
+            const overtimeSaved = overtimesService.create()
 
-            res.json({ data: overtimeSaved});
+            httpResponse.json({ data: overtimeSaved});
         } catch(e) {
-            res.json({error: `${e}`});
+            httpResponse.json({error: `${e}`});
         }
     }
 }
