@@ -5,7 +5,9 @@
   "main": "./src/server.ts",
   "scripts": {
     "dev": "nodemon ./src/server.ts",
-    "test": "tsc && jest ./dist  --silent"
+    "test": "tsc && jest ./dist --silent",
+    "test:watch": "tsc && jest ./dist --watch",
+    "test:coverage": "tsc && jest ./dist --coverage"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "uuidv4": "^6.2.12"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.15.0",
     "@types/express": "^4.17.13",
     "@types/jest": "^26.0.24",
     "@types/nodemailer": "^6.4.4",

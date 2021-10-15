@@ -21,6 +21,14 @@ export class OvertimeController {
                 }
             }
 
+            const requiredFieldsUser = ['name', 'email'];
+            
+            for (const field of requiredFieldsUser) {
+                if(!req.body['user'][field]) {
+                    throw new Error(`O parametro ${field} do user é obrigatório.`)
+                }
+            }
+
             const {date, start_time, end_time, description, user} = req.body;
 
             const overtime = new Overtime(date, start_time, end_time, description, user);
