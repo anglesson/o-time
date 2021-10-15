@@ -9,7 +9,7 @@ export class OvertimesService {
     this.overtimesRepository = getCustomRepository(OvertimeRepository)
   }
 
-  async create() {
-    
+  async create(overtime: Overtime): Promise<Overtime> {
+    return await this.overtimesRepository.save(overtime);
   }
 }
