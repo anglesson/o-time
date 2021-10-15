@@ -36,6 +36,7 @@ class Overtime {
 		if (!this.id) {
 			this.id = uuidv4();
 		}
+		this.shipping_status = false;
 	}
 }
 
