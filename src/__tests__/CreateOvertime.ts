@@ -1,6 +1,6 @@
 import { Overtime } from "../entities/Overtime";
 import { User } from "../entities/User";
-import { OvertimeRepositoryFirebaseImp } from "../repository/OvertimeRepositoryFirebaseImp";
+import { OvertimeRepositoryFirebaseImp } from "../repositories/OvertimeRepositoryFirebaseImp";
 
 
 test('Create Overtime', async function() {

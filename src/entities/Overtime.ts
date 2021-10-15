@@ -1,81 +1,41 @@
+import { Entity, Column, PrimaryColumn, CreateDateColumn, ManyToOne, JoinColumn, UpdateDateColumn } from 'typeorm';
 import { User } from "./User";
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
+@Entity('overtimes')
 class Overtime {
-	private id: string;
-	private date: Date;
-	private start_time: Date;
-	private end_time: Date;
-	private description: string;
-	private shipping_status: boolean;
-	private user: User;
+	@PrimaryColumn()
+	id: string;
 
-	constructor(
-		date: Date,
-		start_time: Date,
-		end_time: Date,
-		description: string,
-		user: User
-	) {
-		this.id = uuidv4(); 
-		this.date = date;
-		this.start_time = start_time;
-		this.end_time = end_time;
-		this.description = description;
-		this.shipping_status = false;
-		this.user = user;
-	}
+	@Column()
+	date: Date;
 
-	getId() {
-		return this.id;
-	}
+	@Column()
+	start_time: Date;
 
-	getDate() {
-		return this.date;
-	}
+	@Column()
+	end_time: Date;
 
-	setDate(date: Date) {
-		this.date = date;
-	}
+	@Column()
+	description: string;
 
-	getStartTime() {
-		return this.start_time;
-	}
+	@Column()
+	shipping_status: boolean;
+	
+	@JoinColumn({name: "user_id"})
+  @ManyToOne(() => User)
+	user: User;
 
-	setStartTime(start_time: Date) {
-		this.start_time = start_time;
-	}
+	@CreateDateColumn()
+	created_at: Date;
 
-	getEndTime() {
-		return this.end_time;
-	}
+	@UpdateDateColumn()
+	updated_at: Date;
 
-	setEndTime(end_time: Date) {
-		this.end_time = end_time;
-	}
-
-	getDescription() {
-		return this.description;
-	}
-
-	setDescription(description: string) {
-		this.description = description;
-	}
-
-	getShippingStatus() {
-		return this.shipping_status;
-	}
-
-	setShippingStatus(status: boolean) {
-		this.shipping_status = status;
-	}
-
-	getUser() {
-		return this.user;
-	}
-
-	setUser(user: User) {
-		this.user = user;
+	constructor() {
+		if (!this.id) {
+			this.id = uuidv4();
+		}
 	}
 }
 

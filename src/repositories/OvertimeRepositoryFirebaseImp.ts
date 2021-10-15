@@ -16,7 +16,9 @@ export class OvertimeRepositoryFirebaseImp implements IOvertimeRepository{
             }
         }
 
-        const retorno = await set(ref(db, 'overtimes/' + overtime.getId()), overtimeData);
+        const retorno = await set(ref(db, 'overtimes/' + overtime.getId()), overtimeData).then(() => {
+            
+        });
 
         console.log(retorno);
     

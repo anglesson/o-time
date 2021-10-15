@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Overtime } from "../entities/Overtime";
 import { User } from "../entities/User";
-import { IOvertimeRepository } from "../repository/IOvertimeRepository";
+import { IOvertimeRepository } from "../repositories/IOvertimeRepository";
 
 export class OvertimeController {
     public overtimeRepository: IOvertimeRepository;

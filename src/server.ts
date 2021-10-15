@@ -1,6 +1,6 @@
 import express from "express";
 import { OvertimeController } from "./controllers/OvertimeController";
-import { OvertimeRepositoryFirebaseImp } from "./repository/OvertimeRepositoryFirebaseImp";
+import { OvertimeRepositoryFirebaseImp } from "./repositories/OvertimeRepositoryFirebaseImp";
 
 const overtimeRepositoryFirebaseImp = new OvertimeRepositoryFirebaseImp();
 const overtimeController = new OvertimeController(overtimeRepositoryFirebaseImp);

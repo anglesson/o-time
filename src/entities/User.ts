@@ -1,12 +1,27 @@
+import { Entity, Column, PrimaryColumn, CreateDateColumn, ManyToOne, JoinColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid'
 
+@Entity('users')
 class User {
-	public readonly name: string;
-	public readonly email: string;
+	@PrimaryColumn()
+	id: string;
 
-	constructor(name: string, email: string) {
-		this.name = name;
-		this.email = email;
+	@Column()
+	name: string;
+
+	@Column()
+	email: string;
+
+	@CreateDateColumn()
+	created_at: Date;
+
+	@UpdateDateColumn()
+	updated_at: Date;
+
+	constructor() {
+		if (!this.id) {
+			this.id = uuidv4();
+		}
 	}
 }
 
