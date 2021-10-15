@@ -23,7 +23,6 @@ export class OvertimeController {
 
             const { date, start_time, end_time, description, user_email } = httpRequest.body;
 
-            // Buscar os dados do usuário
             const user = await usersService.findByEmail(user_email);
 
             if(!user) {
@@ -51,11 +50,9 @@ export class OvertimeController {
             
             const { date, start_time, end_time, description } = httpRequest.body;
 
-            // Buscar o item no bd
             const overtimesService = new OvertimesService();
             const overtimeFinded = await overtimesService.findById(id);
 
-            // Validar os campos
             const acceptableFields = ['date', 'start_time', 'end_time', 'description'];
 
             for (let i = 0; i < httpRequest.body.lenght; i++) {
@@ -86,5 +83,24 @@ export class OvertimeController {
         const overtimesService = new OvertimesService();
         const overtimes = await overtimesService.getAll();
         httpResponse.json({ data: overtimes });
+    }
+
+    async destroy(httpRequest: Request, httpResponse: Response) {
+        try {
+            const { id } = httpRequest.params;
+            const overtimesService = new OvertimesService();
+
+            const overtime = await overtimesService.findById(id);
+
+            if (!overtime) {
+                throw new Error("Hora extra não encontrada.");
+            }
+
+            await overtimesService.delete(id);
+    
+            httpResponse.status(204).json();
+        } catch (error) {
+            httpResponse.json({error: `${error}`});
+        }
     }
 }

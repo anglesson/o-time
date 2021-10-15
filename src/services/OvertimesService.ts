@@ -29,4 +29,8 @@ export class OvertimesService {
       relations: ['user']
     });
   }
+
+  async delete(id: string): Promise<void> {
+    await this.overtimesRepository.delete(id);
+  }
 }

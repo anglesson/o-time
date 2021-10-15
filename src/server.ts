@@ -14,6 +14,7 @@ app.get('/api/overtime', overtimeController.getAll);
 app.get('/api/overtime/:id', overtimeController.show);
 app.post('/api/overtime', overtimeController.create);
 app.put('/api/overtime/:id', overtimeController.update);
+app.delete('/api/overtime/:id', overtimeController.destroy);
 app.post('/api/user', userController.create);
 
 const port = 3003;
