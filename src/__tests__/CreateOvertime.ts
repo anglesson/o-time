@@ -1,6 +1,7 @@
-import { OvertimeRepositoryFirebaseImp } from "../src/repository/OvertimeRepositoryFirebaseImp";
-import { User } from "../src/entities/User";
-import { Overtime } from "../src/entities/Overtime";
+import { Overtime } from "../entities/Overtime";
+import { User } from "../entities/User";
+import { OvertimeRepositoryFirebaseImp } from "../repository/OvertimeRepositoryFirebaseImp";
+
 
 test('Create Overtime', async function() {
   const overtimeRepositoryFirebaseImp = new OvertimeRepositoryFirebaseImp();
@@ -12,5 +13,7 @@ test('Create Overtime', async function() {
   let user = new User("Adinho", "adson.souza@aric.com.br");
   
   const overtime = new Overtime(date, start_time, end_time, description, user);
-  overtimeRepositoryFirebaseImp.save(overtime);
+  const response = await overtimeRepositoryFirebaseImp.save(overtime);
+
+  expect(response).toBe(overtime);
 });
