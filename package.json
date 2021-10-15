@@ -5,7 +5,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "dev": "nodemon ./src/server.ts",
-    "test": "tsc && jest ./dist --silent",
+    "test": "tsc && jest ./dist",
     "test:watch": "tsc && jest ./dist --watch",
     "test:coverage": "tsc && jest ./dist --coverage",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"

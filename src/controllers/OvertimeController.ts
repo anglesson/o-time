@@ -20,7 +20,7 @@ export class OvertimeController {
             const user = await usersService.findByEmail(user_email);
 
             if(!user) {
-                throw new Error("Cadê");
+                throw new Error("Usuário não cadastrado.");
             }
 
             const overtime = new Overtime();
@@ -28,10 +28,9 @@ export class OvertimeController {
             overtime.start_time = start_time;
             overtime.end_time = end_time;
             overtime.description = description;
-            overtime.user = user_email;
+            overtime.user = user;
 
-
-            const overtimeSaved = overtimesService.create()
+            const overtimeSaved = await overtimesService.create(overtime)
 
             httpResponse.json({ data: overtimeSaved});
         } catch(e) {
