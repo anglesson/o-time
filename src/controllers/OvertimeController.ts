@@ -6,6 +6,13 @@ import { UsersService } from "../services/UsersService";
 
 export class OvertimeController {
 
+    async show(httpRequest: Request, httpResponse: Response) {
+        const { id } = httpRequest.params;
+        const overtimesService = new OvertimesService();
+        const overtime = await overtimesService.findById(id);
+        httpResponse.json({ data: overtime });
+    }
+
     async create(httpRequest: Request, httpResponse: Response) {
         try {
             const overtimesService = new OvertimesService();
@@ -36,5 +43,48 @@ export class OvertimeController {
         } catch(e) {
             httpResponse.json({error: `${e}`});
         }
+    }
+
+    async update(httpRequest: Request, httpResponse: Response) {
+        try {
+            const { id } = httpRequest.params;
+            
+            const { date, start_time, end_time, description } = httpRequest.body;
+
+            // Buscar o item no bd
+            const overtimesService = new OvertimesService();
+            const overtimeFinded = await overtimesService.findById(id);
+
+            // Validar os campos
+            const acceptableFields = ['date', 'start_time', 'end_time', 'description'];
+
+            for (let i = 0; i < httpRequest.body.lenght; i++) {
+                console.log('chs')
+            }
+
+            for (const field of acceptableFields) {
+                if(!httpRequest.body[field]) {
+                    throw new Error(`O parametro ${field} é obrigatório.`);
+                }
+            }
+
+            overtimeFinded.date = date;
+            overtimeFinded.start_time = start_time;
+            overtimeFinded.end_time = end_time;
+            overtimeFinded.description = description;
+
+            console.log(overtimeFinded)
+            
+            await overtimesService.update(id, overtimeFinded);
+            httpResponse.json({ data: overtimeFinded });
+        } catch(e) {
+            httpResponse.json({error: `${e}`});
+        }
+    }
+
+    async getAll(httpRequest: Request, httpResponse: Response) {
+        const overtimesService = new OvertimesService();
+        const overtimes = await overtimesService.getAll();
+        httpResponse.json({ data: overtimes });
     }
 }

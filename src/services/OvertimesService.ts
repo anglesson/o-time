@@ -12,4 +12,21 @@ export class OvertimesService {
   async create(overtime: Overtime): Promise<Overtime> {
     return await this.overtimesRepository.save(overtime);
   }
+
+  async findById(id: string): Promise<Overtime> {
+    return await this.overtimesRepository.findOne(id, {
+      relations: ['user']
+    });
+  }
+
+  async update(id: string, overtime: Overtime): Promise<Overtime> {
+    await this.overtimesRepository.update(id, overtime);
+    return this.findById(id);
+  }
+
+  async getAll(): Promise<Overtime[]> {
+    return await this.overtimesRepository.find({
+      relations: ['user']
+    });
+  }
 }
